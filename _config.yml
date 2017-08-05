@@ -3,7 +3,7 @@ permalink:      /:year-:month-:day/:title
 
 # Setup
 title:          keys961 - Green House
-paginate:       5
+paginate:       10
 baseurl:        ""
 url:            "https://keys961.github.io/"
 
@@ -24,7 +24,7 @@ author:
 # Custom vars
 version:        3.4.1
 github:
-  repo:         http://github.com/keys961
+  repo:         https://github.com/chesterhow/tale
 
 # Gems
 gems:
