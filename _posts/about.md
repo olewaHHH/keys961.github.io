@@ -2,7 +2,6 @@
 layout: post
 title: "About"
 author: "keys961"
-permalink: /about/
 ---
 
 这是keys961的博客，反正我也不知道自己会不会继续维护它。
