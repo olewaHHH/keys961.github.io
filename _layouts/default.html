@@ -4,6 +4,7 @@
   {% include head.html %}
 
   <body>
+  <div style="background:green">
     <nav class="nav">
       <div class="nav-container">
         <a href="{{ site.baseurl }}/">
@@ -14,16 +15,19 @@
           <li><a href="{{ site.baseurl }}/">Posts</a></li>
         </ul>
     </div>
-  </nav>
 
+    </nav>
+  </div>
     <main>
       {{ content }}
     </main>
 
+    <div style="background: green">
     <footer>
       <span>
         &copy; <time datetime="{{ site.time }}">{{ site.time | date: '%Y' }}</time> {{ site.author.name }}. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
       </span>
     </footer>
+    </div>
   </body>
 </html>
