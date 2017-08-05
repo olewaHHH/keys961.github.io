@@ -2,10 +2,10 @@
 permalink:      /:year-:month-:day/:title
 
 # Setup
-title:          Tale
+title:          keys961 - Green House
 paginate:       5
 baseurl:        ""
-url:            "https://chesterhow.github.io/tale"
+url:            "https://keys961.github.io/"
 
 # Assets
 sass:
@@ -17,14 +17,14 @@ markdown:       kramdown
 
 # About
 author:
-  name:         Chester How
-  url:          http://chester.how
-  email:        chesterhow@gmail.com
+  name:         keys961
+  url:          http://github.com/keys961
+  email:        keys961@hotmail.com
 
 # Custom vars
 version:        3.4.1
 github:
-  repo:         https://github.com/chesterhow/tale
+  repo:         http://github.com/keys961
 
 # Gems
 gems:
