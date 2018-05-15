@@ -2,8 +2,8 @@
 permalink:      /:year-:month-:day/:title
 
 # Setup
-title:          keys961 - Green House
-paginate:       10
+title:          keys961
+paginate:       15
 baseurl:        ""
 url:            "https://keys961.github.io/"
 
