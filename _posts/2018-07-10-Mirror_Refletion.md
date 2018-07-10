@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "分布式系统概念与设计读书笔记-进程间通信"
+title: "Leetcode - Mirror Reflection"
 author: "keys961"
 comments: true
 typora-root-url: ./
