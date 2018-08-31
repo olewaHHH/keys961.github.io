@@ -1,33 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
-  <div style="background:green">
-    <nav class="nav">
-      <div class="nav-container">
-        <a href="{{ site.baseurl }}/">
-          <h2 class="nav-title">{{ site.title }}</h2>
-        </a>
-        <ul>
-          <li><a href="{{ '/about' | prepend: site.url }}">About</a></li>
-          <li><a href="{{ site.baseurl }}/">Posts</a></li>
-        </ul>
-    </div>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
 
-    </nav>
-  </div>
-    <main>
-      {{ content }}
-    </main>
+    {% include nav.html %}
 
-    <div style="background: green">
-    <footer>
-      <span>
-        &copy; <time datetime="{{ site.time }}">{{ site.time | date: '%Y' }}</time> {{ site.author.name }}. Made with Jekyll using the <a href="https://github.com/chesterhow/tale/">Tale</a> theme.
-      </span>
-    </footer>
-    </div>
-  </body>
+    {{ content }}
+
+    {% include footer.html %}
+
+
+<!-- Image to hack wechat -->
+<img src="/img/apple-touch-icon.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
 </html>
