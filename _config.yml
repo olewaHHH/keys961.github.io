@@ -52,7 +52,8 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
-
+mermaid: 
+  src: 'https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.js'
 
 
 # 评论系统
