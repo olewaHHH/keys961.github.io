@@ -2,6 +2,10 @@
 layout: post
 title: "JVM基础整理(大多数基于JDK7)"
 author: "keys961"
+catalog: true
+tags:
+	- Java
+	- JVM
 comments: true
 ---
 #  JVM整理

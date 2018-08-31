@@ -2,6 +2,10 @@
 layout: post
 title: "Java并发知识点整理"
 author: "keys961"
+catalog: true
+tags:
+	- Java
+	- Concurrency
 comments: true
 ---
 

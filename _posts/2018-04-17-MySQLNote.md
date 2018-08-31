@@ -3,6 +3,10 @@ layout: post
 title: "MySQL Notes"
 author: "keys961"
 comments: true
+catalog: true
+tags:
+  - Database
+  - MySQL
 ---
 
 ## Chapter 1: MySQL 架构
