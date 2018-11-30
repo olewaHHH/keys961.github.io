@@ -4,8 +4,8 @@ title: "JVM基础整理(大多数基于JDK7)"
 author: "keys961"
 catalog: true
 tags:
-	- Java
-	- JVM
+  - Java
+  - JVM
 comments: true
 ---
 #  JVM整理
@@ -242,7 +242,7 @@ comments: true
 	自定义类加载器建议重写`findClass()`而不是`loadClass()`方法.	
 
 	**双亲委派模型**:
-		
+	​	
 	- 加载器之间有层次关系,除了顶层的Bootstrap类加载器外,其余的加载器都应有父亲类加载器(但通常以组合关系实现).层次: Bootstrap <- Extension <- Application <- User-defined
 
 	- 工作流程:优先给父类加载器,若父类加载器无法处理这个请求则自己尝试加载

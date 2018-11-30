@@ -4,9 +4,9 @@ title: "2017秋季PAT A级总结"
 author: "keys961"
 catalog: true
 tags:
-    - Algorithm
-    - Data Structure
-    - PAT
+  - Algorithm
+  - Data Structure
+  - PAT
 comments: true
 ---
 

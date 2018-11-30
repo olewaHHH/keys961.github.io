@@ -4,7 +4,7 @@ title: "设计模式"
 author: "keys961"
 catalog: true
 tags:
-    - Design Pattern
+  - Design Pattern
 comments: true
 ---
 
@@ -44,4 +44,5 @@ comments: true
     - [Visitor](https://github.com/keys961/Design-Pattern/blob/master/src/org/yejt/visitor/Visitor.md)
 
 **Codes are rewritten in Java and referenced from:**
+
 - _Design Patterns: Elements of Reusable Object-Oriented Software_

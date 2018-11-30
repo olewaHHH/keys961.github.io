@@ -4,8 +4,8 @@ title: "Java并发知识点整理"
 author: "keys961"
 catalog: true
 tags:
-	- Java
-	- Concurrency
+  - Java
+  - Concurrency
 comments: true
 ---
 
@@ -86,7 +86,7 @@ comments: true
 7. 顺序一致性模型: 1)一个线程中的所有操作必须按照程序的顺序来执行 => 所有操作完全按照程序的顺序串行执行; 2)每个操作都必须原子执行且立即对所有线程可见。(但JMM会重排序,但保证数据依赖性,在保证执行结果正确并正确同步的前提下尽量优化)
 
 8. `volatile`的内存语义: 
- 
+
 	**特性：对变量的读/写具有原子性(不包含`v++`复合操作); 对一个`volatile`的读总能看到这个变量的最后的写入。**
 	
 	**即第二个操作是`volatile`写,或者第一个是`volatile`读, 都不能指令重排；或者第一个是`volatile`写和第二个是`volatile`读时不能指令重排。	**
@@ -118,7 +118,7 @@ comments: true
 	//假如不同线程对数组或类似元素的写入，需要使用同步原语来保证内存的可见性
 
 12. 线程安全的单例模式(延迟加载):
- 
+
 	1.double-check with `volatile`(创建对象的一系列指令会被重排序); 
 	
 	原理: `new Obj()`分为三个步骤:

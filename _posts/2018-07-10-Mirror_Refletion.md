@@ -6,7 +6,7 @@ comments: true
 typora-root-url: ./
 catalog: true
 tags:
-	- Algorithm
+  - Algorithm
 ---
 
 LeetCode上的一题，题目是：
