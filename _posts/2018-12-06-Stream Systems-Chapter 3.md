@@ -50,7 +50,7 @@ typora-root-url: ./
 > - 入口时间戳应用：只需要监控Processing time就行了，而它很容易被监控
 > - 有时序的静态大小的日志集：只要监控最小的没处理的日志的Event time，基于多个静态已知的输入分区，而这些输入分区产生的数据的Event time也是单调递增的
 
- ## 2.2. Heuristic Watermark
+## 2.2. Heuristic Watermark
 
 只是**推断**了小于$T$的Event time消息不会被收到，因此可能有延迟数据漏掉。
 
