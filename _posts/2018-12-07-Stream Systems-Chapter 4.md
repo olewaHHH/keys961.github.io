@@ -61,14 +61,14 @@ typora-root-url: ./
 
 # 3. Custom Windowing
 
-*以Apache Beam为例*，Custom windowing strategy包括：
+*以Apache Beam为例*，自定义一个窗口主要有2个方面，包括：
 
 - **Window assignment**: 可将每个元素放入一个初始的窗口（极限下，每个元素可独享一个窗口）
-- **Window merging**: 允许窗口在分组时合并，使得窗口随着时间推移而变化
+- **Window merging** (Optional): 允许窗口在分组时合并，使得窗口随着时间推移而变化
 
 ## 3.1. Variation on Fixed Windows
 
-**Assignment: **根据元素的时间戳，窗口的大小和偏移来决定放入哪个窗口
+**Assignment**: 根据元素的时间戳，窗口的大小和偏移来决定放入哪个窗口
 
 **Merging**: 无
 
@@ -151,7 +151,7 @@ public Collection<IntervalWindow> assignWindow(AssignContext c) {
 
 **Merging**: 分组时，所有有效（没关闭）的窗口进行排序，之后将任何重叠的窗口合并在一起
 
-自定义Session Windows，可对上面2个方面进行自定义。
+自定义Session Windows，通常对Merging进行自定义。
 
 ### Bounded Sessions
 
