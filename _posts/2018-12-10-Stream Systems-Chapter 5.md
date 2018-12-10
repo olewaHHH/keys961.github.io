@@ -11,9 +11,9 @@ typora-root-url: ./
 
 # 1. Why Exactly-Once
 
-**Why must at-lease-once**：Pipeline中数据丢失是不可接受的，会导致计算错误，因此必须保证Pipeline中的数据一定被处理了
+**Why must at-least-once**：Pipeline中数据丢失是不可接受的，会导致计算错误，因此必须保证Pipeline中的数据一定被处理了
 
-**Why at-lease-once not enough**：At-least-once不能保证去重，而重复的数据会对结果造成不可知的影响，造成结果不准确，所以要Exactly-once（实际上最终效果可看成***幂等***）
+**Why at-least-once not enough**：At-least-once不能保证去重，而重复的数据会对结果造成不可知的影响，造成结果不准确，所以要Exactly-once（实际上最终效果可看成***幂等***）
 
 > 因此会有Lambda Architecture出现——Stream & Batch混合
 >
