@@ -91,9 +91,9 @@ Shuffle即把某个范围的数据传到特定的Worker上（往往是不同的�
 
 - Google Dataflow对Shuffle传播操作进行checkpoint记录和检查，并捎带一个唯一的ID（即3.1.所述的），在进入下一个阶段之前（被checkpoint前），这个ID要保证存储到一致性存储中，这保证每一个小步骤的确定性。
 
-  > **重试过程中，只会重放已经被checkpoint的数据**，因此用户的不确定性输出的代码不会再次执行。
+  > **重试过程中，checkpoint后的数据才会被重放**，因此用户的不确定性输出的代码不会再次执行。
   >
-  > 这类似于数据库系统的事务。
+  > 这类似于数据库系统的事务（日志）。
 
 - Google Dataflow使用一致性存储，防止ID被重复写到稳定存储中
 
@@ -133,7 +133,7 @@ Shuffle即把某个范围的数据传到特定的Worker上（往往是不同的�
 
 此外，由于数据量上升带来的误报率问题，也可以：
 
-- 对每个请求捎带时间戳，并对Bloom filter进行窗口化处理（应该是Processing-time window，如每隔十分钟创建一个新的Bloom filter），查询和插入时对某个窗口的Bloom filter进行操作，减少单个Bloom filter的数据量
+- 对每个请求捎带时间戳，并对Bloom filter进行窗口化处理（实质上是Processing-time window，如每隔十分钟创建一个新的Bloom filter，实现常使用Ingress timestamp），查询和插入时对某个窗口的Bloom filter进行操作，减少单个Bloom filter的数据量
 - 窗口化的Bloom filter可被系统垃圾回收，使系统资源的占用可控
 
 ### c) Garbage Collection
