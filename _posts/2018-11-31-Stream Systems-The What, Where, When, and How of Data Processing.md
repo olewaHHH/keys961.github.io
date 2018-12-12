@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stream Systems-Chapter 2"
+title: "Stream Systems-The What, Where, When, and How of Data Processing"
 author: "keys961"
 comments: true
 catalog: true

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stream Systems-Chapter 5"
+title: "Stream Systems-Exactly-Once and Side Effects"
 author: "keys961"
 comments: true
 catalog: true

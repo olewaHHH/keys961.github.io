@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stream Systems-Chapter 1"
+title: "Stream Systems-Stream 101"
 author: "keys961"
 comments: true
 catalog: true

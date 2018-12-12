@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stream Systems-Chapter 6"
+title: "Stream Systems-Streams and Tables"
 author: "keys961"
 comments: true
 catalog: true

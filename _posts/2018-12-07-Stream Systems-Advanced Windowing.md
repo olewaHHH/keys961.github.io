@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stream Systems-Chapter 4"
+title: "Stream Systems-Advanced Windowing"
 author: "keys961"
 comments: true
 catalog: true
