@@ -34,9 +34,12 @@ Pipeline要永远运行下去是不现实的，肯定会因为机器、环境、
 
 # 2. Implicit State
 
-> 从“持久化一切”，到“不妥协一致性下，权衡实现，并更加有效率”
+> 后文讲“存什么样的表”，能让系统效率更高，
 >
-> 即Raw grouping到Incremental combining
+> 即从“持久化一切”，到“不妥协一致性下，权衡实现，并更加有效率”
+>
+> - Implicit State讲在高层调用隐式决定存什么，两种最常用的即Raw grouping到Incremental combining
+> - Generalized State讲在底层完全自定义决定存什么，以自定义`DoFn`为例
 
 ## 2.1. Raw Grouping
 
