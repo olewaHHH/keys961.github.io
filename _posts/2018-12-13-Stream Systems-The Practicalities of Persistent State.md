@@ -59,7 +59,7 @@ Pipeline要永远运行下去是不现实的，肯定会因为机器、环境、
 > PCollection<KV<Team, Integer>> totals = 
 >     input.apply(Window.into(...).triggering(...))
 >     	.apply(
->     	MapElements
+>     		MapElements
 >     		.via(kv -> StreamSupport.intStream(kv.getValue().spliterator(), false)) //首先GroupByKey，生成<Team, Iterable<Integer>>表
 >     		.sum() //然后求和，即进行转化，将列表转化成数字，是一个Non-grouping操作
 > 	);
