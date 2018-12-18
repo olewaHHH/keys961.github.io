@@ -156,13 +156,13 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 ### b) When: Triggers
 
-**Per-record Triggers**:
+#### **Per-record Triggers**:
 
 在Classic SQL中一个默认的类型，即每条数据到来后，物化一次结果。Beam API中即`Repeatedly(AfterCount(1))`。
 
 不过到Stream SQL，其输出的结果（以Stream version下）就是一个物化结果的变化列表（即`<res, window, proc_time>`元组列表，记录了每次物化结果）
 
-**Watermark Triggers**: 
+#### **Watermark Triggers**: 
 
 在流式处理系统中常用的，Beam API中即`AfterWatermark().withLateFirings(...)`
 
@@ -180,13 +180,13 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 > 即`<res, window, emit_time, emit_timing, emit_index>`元组列表，记录了给定时间范围内每次物化的结果
 
-**Repeated Delay Triggers**:
+#### **Repeated Delay Triggers**:
 
 每次准备发出数据时，延迟给定时间，然后再触发，Beam API中即`Repeatedly(UnalignedDelay(...))`
 
 > 通过Stream SQL得到的数据也是即`<res, window, emit_time, emit_timing, emit_index>`元组列表，不过`emit_timing`没有值
 
-**Data-driven Triggers**: 
+#### **Data-driven Triggers**: 
 
 可以通过窗口数据达到某些值时触发，在`EMIT <when>`中加入数据值相关的条件。
 
@@ -200,23 +200,26 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 而在其它模式下，如accumulating & retracting mode下，需要额外的一列：**`undo`**，用于记录这个变化是否是一个“撤回”。
 
-**Accumulating & Retracting Mode**:
+#### **Accumulating & Retracting Mode**:
 
 当在accumulating & retracting mode下，每次触发会生成一个$<X_{acc}, Y_{diff}>$值，这在Stream SQL查询得到的是2行：
 
-- 第一列是包含$Y_{diff}$值的一列，其中需要将`undo`列标为`true`
+- 第一行是包含$Y_{diff}$值的一行，其中需要将`undo`列标为`true`
 
-- 之后是包含$X_{acc}$值的一列，`undo`列不需要标记
+- 之后是包含$X_{acc}$值的一行，`undo`列不需要标记
 
 若在某些条件下（如窗口合并），产生了多个撤回值，那么一般来说，*撤回值的行在前，累计值的行在后*。（这样从Stream SQL输出构建窗口时，老窗口会被`undo`标记删除，且不影响新窗口的创建）
 
-**Discarding Mode**: 
+#### **Discarding Mode**: 
 
 因为用到的很少，且容易引起混淆和错误，它不值得直接引入Stream SQL中，系统可以在外部提供选项支持这个模式。
 
 ### d) 总结：TVR在Stream SQL查询引入的列
 
-- `proc_time`: 该列最后被修改的时间
-- `emit_timing`: 该列被输出的*时机*，相对于Watermark而言（`early`, `on-time`, `late`）
-- `emit_index`: 该列（窗口）第几次发出数据（一般从0计数）
-- `undo`: 在accumulating & retracting mode下，标记该列是否为一个撤销变化
+- `proc_time`: 该行最后被修改的时间
+- `emit_timing`: 该行被输出的*时机*，相对于Watermark而言（`early`, `on-time`, `late`）
+- `emit_index`: 该行第几次发出数据（一般从0计数）
+- `undo`: 在accumulating & retracting mode下，标记该行是否为一个撤销变化（通常是stream-version下）
+
+> 这里的"行"，并不是指stream-versioned TVR的一行，而是流处理系统将“流转化为表”中那个“表”的一行。在窗口下，**“行“代表某个窗口的最新的被物化的窗格值**。
+
