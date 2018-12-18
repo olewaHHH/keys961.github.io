@@ -89,7 +89,7 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 - Output tables: 要么被最后的Grouping操作，要么被隐式Grouping操作（如通过每行的ID），将流输出成表
 - 其它Grouping/Ungrouping操作: 只提供Grouping的灵活性，这在`GROUP BY`, `JOIN`等操作中体现，可以自定义Grouping的算法，但是中间表转化成流是无法自定义的，是由系统隐式帮我们做的
 
-**Materialized Views**
+#### **Materialized Views**
 
 视图是一张抽象的虚拟表，可看成一个包装好的SQL查询语句。
 
@@ -156,13 +156,13 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 ### b) When: Triggers
 
-#### **Per-record Triggers**:
+#### **Per-record Triggers**
 
 在Classic SQL中一个默认的类型，即每条数据到来后，物化一次结果。Beam API中即`Repeatedly(AfterCount(1))`。
 
 不过到Stream SQL，其输出的结果（以Stream version下）就是一个物化结果的变化列表（即`<res, window, proc_time>`元组列表，记录了每次物化结果）
 
-#### **Watermark Triggers**: 
+#### **Watermark Triggers**
 
 在流式处理系统中常用的，Beam API中即`AfterWatermark().withLateFirings(...)`
 
@@ -180,13 +180,13 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 > 即`<res, window, emit_time, emit_timing, emit_index>`元组列表，记录了给定时间范围内每次物化的结果
 
-#### **Repeated Delay Triggers**:
+#### **Repeated Delay Triggers**
 
 每次准备发出数据时，延迟给定时间，然后再触发，Beam API中即`Repeatedly(UnalignedDelay(...))`
 
 > 通过Stream SQL得到的数据也是即`<res, window, emit_time, emit_timing, emit_index>`元组列表，不过`emit_timing`没有值
 
-#### **Data-driven Triggers**: 
+#### **Data-driven Triggers**
 
 可以通过窗口数据达到某些值时触发，在`EMIT <when>`中加入数据值相关的条件。
 
@@ -200,7 +200,7 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 而在其它模式下，如accumulating & retracting mode下，需要额外的一列：**`undo`**，用于记录这个变化是否是一个“撤回”。
 
-#### **Accumulating & Retracting Mode**:
+#### **Accumulating & Retracting Mode**
 
 当在accumulating & retracting mode下，每次触发会生成一个$<X_{acc}, Y_{diff}>$值，这在Stream SQL查询得到的是2行：
 
@@ -210,7 +210,7 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 若在某些条件下（如窗口合并），产生了多个撤回值，那么一般来说，*撤回值的行在前，累计值的行在后*。（这样从Stream SQL输出构建窗口时，老窗口会被`undo`标记删除，且不影响新窗口的创建）
 
-#### **Discarding Mode**: 
+#### **Discarding Mode**
 
 因为用到的很少，且容易引起混淆和错误，它不值得直接引入Stream SQL中，系统可以在外部提供选项支持这个模式。
 
