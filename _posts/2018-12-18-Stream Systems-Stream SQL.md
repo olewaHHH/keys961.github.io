@@ -29,7 +29,7 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 > Classic Relation: 可将数据列（即类型）作为x轴，数据行作为y轴，是二维的
 >
-> Time-Varying Relation: 在传统基础上，再*添加一个维度——时间*（可以是一个范围），作为z轴，捕获随时间推移，不同时间上的数据快照
+> Time-Varying Relation: 在传统基础上，再*添加一个维度——时间*（可以是一个范围，这个范围取决于输入的event time和Triggers），作为z轴，捕获随时间推移，不同时间上的数据快照
 
 根据上面的描述，可以看出，当要应用关系代数到Time-varying relation的时候，只要将操作应用到其中包含的一系列的根据时间分隔的Classic relation上，最后输出的也是一系列的与时间相关的Classic relation，即最终也是Time-varying relation。因此：
 
@@ -38,9 +38,9 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 ## 1.3. Streams and Tables
 
-**Tables**: 捕获了Time-varying relation在某个特定时间的快照（即输入时间，从Time-varying relation中读出一份快照）
+**Tables**: 捕获了Time-varying relation随时间变化而生成的*快照*（快照是一张表）
 
-**Streams**: 捕获了Time-varying relation上的*一连串的变化*，类似于数据库日志
+**Streams**: 捕获了Time-varying relation上的*一连串的变化*（变化是一行一行数据），类似于数据库日志
 
 根据Streams捕获的内容，可以很容易地构建一张Time-varying relation，**因此它也是Time-varying relation的另一种表示**（即**Stream version**）。（而1.2.定义的是**Table version**下的Time-varying relation，两者是**等价**的）
 
@@ -48,7 +48,7 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 但是根据Time-varying relation的定义，在实际应用中，可以预见数据量会非常大，不论是Stream version还是Table version下。因此，数据会刻意地丢失：
 
-- Table version下，通常只会取最近一个版本的表，其它老版本的会被垃圾回收或者被压缩存储
+- Table version下，通常只会取最近一个或几个版本的表，其它老版本的会被垃圾回收或者被压缩存储
 - Stream version下，通常只会取一段时间内的变化，其它老版本的会被垃圾回收或者被压缩存储
 
 总之，Streams和Tables是同一事物的两面。
@@ -147,6 +147,8 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 前文知，窗口化是一个Group-by-key操作的变种（即让窗口称为数据的辅助的key，一般是层次化的）。
 
+> 实际上也就是说，**窗口只是一条数据附带的属性**，可辅助Grouping操作
+
 因此，在Stream SQL中，窗口化操作可通过：
 
 - `GROUP BY`操作
@@ -156,11 +158,18 @@ Stream SQL操作的对象不是传统的*特定时间的数据*，而是*随时�
 
 ### b) When: Triggers
 
+不论是什么Trigger，只要它被触发一次，对应的TVR就会生成一个快照/变化行。
+
+> 上面说明TVR的快照/变化行什么时候生成
+
 #### **Per-record Triggers**
 
 在Classic SQL中一个默认的类型，即每条数据到来后，物化一次结果。Beam API中即`Repeatedly(AfterCount(1))`。
 
-不过到Stream SQL，其输出的结果（以Stream version下）就是一个物化结果的变化列表（即`<res, window, proc_time>`元组列表，记录了每次物化结果）
+到Stream SQL，其输出的结果：
+
+- Stream version下，就是一个物化结果的变化列表（即`<res, window, proc_time>`元组列表，记录了每次物化结果）
+- Table version下，就是生成另一个快照
 
 #### **Watermark Triggers**
 
