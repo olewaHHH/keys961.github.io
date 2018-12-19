@@ -127,5 +127,5 @@ Windowed joins操作将“时间维度”加入到`JOIN`的谓词中。因此，
 
 - 多个源的watermark只会取*最小值*（之前也提及到），以保证最后的结果正确性
 - 生成的TVR的大小也会变小，不论是Stream version还是Table version，因为：
-  - 相比于Per-record trigger，当多个数据源中只要产生一个新数据，就要物化一次，即对于Table version TVR而言就要生成一个新快照，对于Stream version而言就有生成一行或多行（`undo`）变化记录
+  - 相比于Per-record trigger，当多个数据源中只要产生一个新数据，就要物化一次，**即对于Table version TVR而言就要生成一个新快照，对于Stream version而言就有生成一行或多行（`undo`）变化记录**
   - 使用Watermark trigger，由于会取多个数据源的最小值，因此只会在过了某个时间点后才会物化，TVR需要添加的快照/变化记录就会变少
