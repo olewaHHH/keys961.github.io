@@ -58,7 +58,7 @@ Join操作实质上是一个Grouping操作，即将之前无关的数据聚合�
 
 `SEMI JOIN`的动作逻辑可用以下伪码表示（实现肯定不是）：
 
-```Java
+```java
 Table newTable = Tables.init(props);
 for(Record outerRecord : outerTable.records()) {
     for(Record innerRecord : innerTable.records()) {
