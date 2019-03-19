@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "MapReduce"
+title: "论文阅读-MapReduce"
 author: "keys961"
 comments: true
 catalog: true
 tags:
   - Distributed System
+  - Paper
 typora-root-url: ./
 ---
 
