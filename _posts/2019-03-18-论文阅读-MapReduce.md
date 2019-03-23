@@ -140,3 +140,51 @@ MapReduce库提供（命名）计数器统计不同事件的发生次数。
 > 有些计数器MapReduce库自动维持。计数器对完整性检查很有用。
 
 > 注意计数器计数需要考虑*幂等性*。
+
+# 4. MIT-6.824 Lab 1
+
+## 4.1. Part 1
+
+只需查库就行，用JSON格式序列化/反序列化。
+
+对于一个`mapper`，生成$R$个文件供`reducer`使用；对于一个`reducer`，从$M$个文件（由`mapper`向该`reducer`分区生成的）中读入。
+
+我在执行`reduceF()`前，先进行了排序，这是可选的。
+
+## 4.2. Part 2
+
+抄论文即可。
+
+## 4.3. Part 3 & 4
+
+创建`goroutine`。由一个死循环构成，总流程是：
+
+- 从`registerChan`读取地址
+- 创建RPC请求参数，`reduce`时，文件属性不要赋值
+- `call()`调用RPC，获取是否成功`ok`
+  - 若成功，则把地址重新传回`registerChan`，供下一次使用，跳出循环
+  - 若失败，则把地址丢弃，重试（什么都不做，进行下一步循环）
+
+可见，流程不会感知`Worker`恢复的，挂了就永远不可用了。
+
+此外，还有卡死的问题，下面的两个指令不能对调，否则会卡死：
+
+```go
+waitGroup.Done()
+registerChan <- addr
+```
+
+> 设有2个`Worker`，若`Worker1`和`Worker2`赋上最后2个任务`task98`,`task99`。
+>
+> - `Worker1`完成，将地址传入`registerChan`，然后执行`waitGroup.Done()`退出
+> - `Worker2`完成，传地址传不过去，卡死，调不到`waitGroup.Done()`
+> - 主线程就僵死了，因为在`waitGroup.Wait()`
+>
+> 解决办法：
+>
+> - 调换位置，主线程可以退出，但仍有`goroutine`会僵住
+> - 增加`registerChan`的缓冲大小
+
+## 4.4. Inverted Index
+
+主要注意的是`document`的去重，放在`mapper`和`reducer`都可以。
