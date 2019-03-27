@@ -169,7 +169,7 @@ MapReduce库提供（命名）计数器统计不同事件的发生次数。
 
 此外，还有卡死的问题，下面的两个指令不能对调，否则会卡死：
 
-```go
+```Go
 waitGroup.Done()
 registerChan <- addr
 ```
