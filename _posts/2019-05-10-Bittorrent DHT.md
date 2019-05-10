@@ -13,7 +13,7 @@ typora-root-url: ./
 
 网址：www.bittorrent.org/beps/bep_0005.html
 
-**BitTorrent使用DHT（分布式散列表）为torrent存储peer的关系**。这样，每个peer都成了tracker。协议基于Kademila网络并在UDP上实现。
+**BitTorrent使用DHT（分布式散列表）为torrent存储peer的关系**。这样，每个peer都成了tracker（即DHT代替了它）。协议基于Kademila网络并在UDP上实现。
 
 > **peer**：监听一个TCP端口的客户端/服务器，实现BitTorrent协议
 >
