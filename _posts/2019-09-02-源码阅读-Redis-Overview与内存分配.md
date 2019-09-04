@@ -49,7 +49,7 @@ typora-root-url: ./
 
 这里以`zmalloc`为例。
 
-```c
+~~~c
 void *zmalloc(size_t size) {
     void *ptr = malloc(size+PREFIX_SIZE);
     if (!ptr) zmalloc_oom_handler(size);
@@ -62,7 +62,7 @@ void *zmalloc(size_t size) {
     return (char*)ptr+PREFIX_SIZE;
 #endif
 }
-```
+~~~
 
 上面有2个宏：
 
@@ -85,13 +85,13 @@ void *zmalloc(size_t size) {
 
 代码如下：
 
-```c
+~~~c
 #define update_zmalloc_stat_alloc(__n) do { \
     size_t _n = (__n); \
     if (_n&(sizeof(long)-1)) _n += sizeof(long)-(_n&(sizeof(long)-1)); \
     atomicIncr(used_memory,__n); \
 } while(0)
-```
+~~~
 
 这里看到，若申请内存不是`sizeof(long)`的整数倍，那么会强行将统计值增加到它的最小整数倍。
 
@@ -107,10 +107,10 @@ void *zmalloc(size_t size) {
 
 若没有宏定义`HAVE_MALLOC_SIZE`，那么Redis申请内存时，会额外开辟一个头，大小位`PREFIX_SIZE`，用于存放申请内存的大小：
 
-```
+~~~
 // header(1个字长) + content(malloc的申请大小) + pad(0~7字节)
 // *header = sizeof(content)
-```
+~~~
 
 这种没定义`HAVE_MALLOC_SIZE`的情况下，返回的是整个内存的大小（`header + content + pad`）
 
@@ -123,7 +123,7 @@ void *zmalloc(size_t size) {
 
 这里是`zfree`函数。
 
-```c
+~~~c
 void zfree(void *ptr) {
 #ifndef HAVE_MALLOC_SIZE
     void *realptr;
@@ -141,7 +141,7 @@ void zfree(void *ptr) {
     free(realptr);
 #endif
 }
-```
+~~~
 
 很简单，就是：
 
@@ -157,13 +157,13 @@ void zfree(void *ptr) {
 
 这里提供一个工具方法，用于拷贝生成一个新字符串。
 
-```c
+~~~c
 char *zstrdup(const char *s) {
     size_t l = strlen(s)+1;
     char *p = zmalloc(l);
     memcpy(p,s,l);
 }
-```
+~~~
 
 调用后，新字符串不要忘记释放。
 
