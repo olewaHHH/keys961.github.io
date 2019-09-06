@@ -49,7 +49,7 @@ typora-root-url: ./
 
 这里以`zmalloc`为例。
 
-~~~c
+~~~C
 void *zmalloc(size_t size) {
     void *ptr = malloc(size+PREFIX_SIZE);
     if (!ptr) zmalloc_oom_handler(size);
@@ -85,7 +85,7 @@ void *zmalloc(size_t size) {
 
 代码如下：
 
-~~~c
+~~~C
 #define update_zmalloc_stat_alloc(__n) do { \
     size_t _n = (__n); \
     if (_n&(sizeof(long)-1)) _n += sizeof(long)-(_n&(sizeof(long)-1)); \
@@ -123,7 +123,7 @@ void *zmalloc(size_t size) {
 
 这里是`zfree`函数。
 
-~~~c
+~~~C
 void zfree(void *ptr) {
 #ifndef HAVE_MALLOC_SIZE
     void *realptr;
@@ -157,7 +157,7 @@ void zfree(void *ptr) {
 
 这里提供一个工具方法，用于拷贝生成一个新字符串。
 
-~~~c
+~~~C
 char *zstrdup(const char *s) {
     size_t l = strlen(s)+1;
     char *p = zmalloc(l);
