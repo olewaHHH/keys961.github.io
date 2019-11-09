@@ -99,7 +99,7 @@ comments: true
 
   - Serial Old:单线程GC,用于老年代,Client模式下默认的老年代GC.GC时其他线程必须暂停.使用Mark-Compact算法.
 
-  - Parraller Old:多线程GC,用于老年代.其关注可控的吞吐量,和Parrallel Seavenge组合.GC时其他线程必须暂停,使用Mark-Compact算法.
+  - Parallel Old:多线程GC,用于老年代.其关注可控的吞吐量,和Parrallel Seavenge组合.GC时其他线程必须暂停,使用Mark-Compact算法.
 
   - CMS(Concurrent Mark Sweep):并发GC,即GC时不一定需要停止其他线程工作,用于老年代.使用Mark-Sweep算法(可设置参数来设置FullGC时整理碎片,碎片整理时其他线程暂停).
 
