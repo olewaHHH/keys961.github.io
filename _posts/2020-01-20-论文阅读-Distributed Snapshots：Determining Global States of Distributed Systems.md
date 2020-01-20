@@ -298,6 +298,7 @@ $$
 ```python
 def stability_detection(y):
     S_star = record_global_state() # With S_iota and S_phi
+    
     definite = y(S_star)
     return definite
 ```
