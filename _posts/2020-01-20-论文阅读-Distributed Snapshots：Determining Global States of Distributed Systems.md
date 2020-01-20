@@ -211,10 +211,10 @@ $$
 
 有原事件序列$seq = (e, 0 \le i)$，存在一个事件序列$seq' = (e', 0 \le i)$，满足：
 
-- $\forall i, i \lt \iota \or i \ge \phi$，有$e_{i}^{'} = e_{i}$
+- $\forall i, i \lt \iota \lor i \ge \phi$，有$e_{i}^{'} = e_{i}$
 - 子序列$(e', \iota \le i \lt \phi)$是子序列$(e, \iota \le i \lt \phi)$的一个排列
-- $\forall i, i \lt \iota \or i \ge \phi$，有$S_{i}^{'} = S_{i}$
-- $\exist k, \iota \le k \le \phi$，有$S^* = S_{k}^{'}$
+- $\forall i, i \lt \iota \lor i \ge \phi$，有$S_{i}^{'} = S_{i}$
+- $\exists k, \iota \le k \le \phi$，有$S^* = S_{k}^{'}$
 
 ### d) 定理证明
 
@@ -251,12 +251,12 @@ $$
 
 - 它是$seq$的一个排列
 - $seq'$中，pre-ordering events必在post-recording events之前
-- $\forall i, i \lt \iota \or i \ge \phi$，有$e_{i}^{'} = e_{i}$
-- $\forall i, i \lt \iota \or i \ge \phi$，有$S_{i}^{'} = S_{i}$
+- $\forall i, i \lt \iota \lor i \ge \phi$，有$e_{i}^{'} = e_{i}$
+- $\forall i, i \lt \iota \lor i \ge \phi$，有$S_{i}^{'} = S_{i}$
 
 至此，我们证明了c)中的前3条性质。
 
-现证明最后一条性质：$\exist k, \iota \le k \le \phi$，有$S^* = S_{k}^{'}$。证明它需要证明：
+现证明最后一条性质：$\exists k, \iota \le k \le \phi$，有$S^* = S_{k}^{'}$。证明它需要证明：
 
 - $S^*$中，每个进程$p$的状态，和它们处理完序列中pre-recording event的状态一样；
 - $S^*$中，每个通道$c$的状态为：所有pre-recording event发往$c$的序列减去所有pre-recording event从$c$中收到的序列。
@@ -281,9 +281,9 @@ $$
 
 - 输入：一个稳定属性$y$
 
-- 输出：一个`bool`值$definite$，它满足$(y(S_\iota) \rightarrow definite) \and (definite \rightarrow y(S_\phi))$，其中$S_\iota, S_\phi$分别代表算法初始和结束的全局状态
+- 输出：一个`bool`值$definite$，它满足$(y(S_\iota) \rightarrow definite) \land (definite \rightarrow y(S_\phi))$，其中$S_\iota, S_\phi$分别代表算法初始和结束的全局状态
 
-  > 满足条件可改写成$(\neg y(S_\iota) \or definite) \and (\neg definite \or y(S_\phi))$
+  > 满足条件可改写成$(\neg y(S_\iota) \lor definite) \land (\neg definite \lor y(S_\phi))$
 
   - 若返回`true`：表示稳定属性在算法*终止*时满足谓词，但不代表稳定属性在算法开始时满足
 
