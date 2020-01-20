@@ -202,8 +202,8 @@ $$
 此外，根据上面的情形，存在一个事件序列$seq'$，满足：
 
 - $seq'$是$seq$的一个排列，$S_{\iota}, S^{*}, S_{\phi}$三个状态都在这个序列中出现
-- $S_\iota = S^*$，或者$S_\iota$先于$S^*$
-- $S_\phi = S^*$，或者$S_\phi$后于$S^*$
+- $S_{\iota} = S^{*}$，或者$S_{\iota}$先于$S^{*}$
+- $S_{\phi} = S^{*}$，或者$S_{\phi}$后于$S^{*}$
 
 ### c) 上述结论的总结
 
@@ -227,7 +227,7 @@ $$
 
 然而对于一个真实场景，$seq$中的$e_{j-1}$可能会发生在$e_{j}$之前，这里$\iota \lt j \lt \phi$（发生在不同进程上），导致post-recording event发生在pre-ordering event之前。
 
-所以，这里生成另一个**事件序列$seq'$**，它是$seq$的一个排列，且**满足pre-recording event一定发生在post-recording event之前**（如上面的例子，可能有$e'_{j-1} = e_j, e'_{j} = e_{j-1}$）。**下面会证明：$S^*$就是在所有pre-recording event之后，post-ordering event之前的全局状态**。
+所以，这里生成另一个**事件序列$seq'$**，它是$seq$的一个排列，且**满足pre-recording event一定发生在post-recording event之前**（如上面的例子，可能有$e^{'}_{j-1} = e_{j}, e^{'}_{j} = e_{j-1}$）。**下面会证明：$S^{*}$就是在所有pre-recording event之后，post-ordering event之前的全局状态**。
 
 首先证明一个结论：**假如一个post-recording event $e_{j-1}$发生在pre-recording event $e_{j}$前，那么将它们交换依旧有效（依旧是一个computation），且交换过的序列执行得到的状态和原来的一样**。
 
