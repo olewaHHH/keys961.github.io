@@ -251,8 +251,8 @@ $$
 
 - 它是$seq$的一个排列
 - $seq'$中，pre-ordering events必在post-recording events之前
-- $\forall i, i \lt \iota \lor i \ge \phi$，有$e_{i}^{'} = e_{i}$
-- $\forall i, i \lt \iota \lor i \ge \phi$，有$S_{i}^{'} = S_{i}$
+- $\forall i, i \lt \iota \lor i \ge \phi$，有$e^{'}_{i} = e_{i}$
+- $\forall i, i \lt \iota \lor i \ge \phi$，有$S^{'}_{i} = S_{i}$
 
 至此，我们证明了c)中的前3条性质。
 
