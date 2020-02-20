@@ -228,7 +228,7 @@ fn event_recv_barrier(input_channel, barrier) {
     // 收到barrier, 首先标记对应的输入通道
     self.marked_input_channels.add(input_channel);
     // 作差集, 获取非back edge的输入通道
-    let regular_input_channels = self.input_channels - self.
+    let regular_input_channels = self.input_channels - self.loop_input_channels;
     if input_channel != Nil && !self.loop_input_channels.contains(input_channel) {
         // 若输入通道不是back edge, 将其阻塞
         block(input_channel);
