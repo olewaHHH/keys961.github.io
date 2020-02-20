@@ -116,7 +116,7 @@ struct Task {
 
 // 初始化
 fn init(input_channels, output_channels, fun, init_state) {
-	self.input_channels = input_channels;
+    self.input_channels = input_channels;
     self.output_channels = output_channels;
     self.udf = fun;
     self.state = init_state;
