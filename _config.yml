@@ -15,11 +15,11 @@ sidebar-about-description: "🌶🔟💉💧🐂🍺, 我只能当个弟弟"
 sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # SNS settings
-RSS: false
+RSS: true
 weibo_username:     2257171647
 zhihu_username:     key961
 github_username:    keys961
-twitter_username:   keys961
+# twitter_username:   keys961
 # Build settings
 permalink: pretty
 paginate: 25
