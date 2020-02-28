@@ -6,6 +6,7 @@ comments: true
 catalog: true
 tags:
   - Data Structure
+  - Paper
 typora-root-url: ./
 ---
 

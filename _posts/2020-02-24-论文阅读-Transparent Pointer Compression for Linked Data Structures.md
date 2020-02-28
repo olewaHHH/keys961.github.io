@@ -7,6 +7,7 @@ catalog: true
 tags:
   - Compiler
   - Memory Management
+  - Paper
 typora-root-url: ./
 ---
 

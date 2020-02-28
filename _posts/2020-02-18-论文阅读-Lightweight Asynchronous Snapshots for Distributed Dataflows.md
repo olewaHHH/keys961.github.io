@@ -6,6 +6,7 @@ comments: true
 catalog: true
 tags:
   - Distributed System
+  - Paper
 typora-root-url: ./
 ---
 
